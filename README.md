@@ -56,7 +56,7 @@ Long Press and Drag-and-Drop: Selenium Actions API was used to simulate long pre
 3. Screenshots / Logs\
    Screenshots and logs would be generated upon successful execution of each step. Here’s how to capture or interpret them:\
 
-Example Log Output (Typical Success Flow):\
+Typical Success Flow:\
 "Accessiblity Clicked": Confirms successful click on the "Views" element.\
 "Scroll to Expandable and Clicked": Confirms successful scrolling and clicking of the "Expandable Lists" element.\
 "Custom Adapter Clicked": Confirms the "Custom Adapter" option was successfully selected.\
