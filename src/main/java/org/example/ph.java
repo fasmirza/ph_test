@@ -5,6 +5,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.BasicConfigurator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.NoSuchElementException;
@@ -30,25 +31,18 @@ public class ph {
 
     public static AppiumDriver driver;
 
-    @BeforeTest
-    public void setup() throws MalformedURLException {
-        // This is the configuration for starting the Test Session
-        UiAutomator2Options options = new UiAutomator2Options();
-        options.setPlatformName("Android");
-        options.setDeviceName("Redmi note 8");
-        options.setPlatformVersion("11.0");
-        options.setApp("D:\\EclipsProject\\PH_test\\src\\main\\resources\\ApiDemos-debug.apk");
 
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options);
+    public static void main(String[] args) {
 
-    }
-
-    @Test
-    public void runTest() {
         try {
-            /*initially it will wait for two second for this element incase of Element doesn't appear
-             *  and it is true for every element used in this test
-             * */
+            UiAutomator2Options options = new UiAutomator2Options();
+            options.setPlatformName("Android");
+            options.setDeviceName("Redmi note 8");
+            options.setPlatformVersion("11.0");
+            options.setApp("D:\\EclipsProject\\PH_test\\src\\main\\resources\\ApiDemos-debug.apk");
+
+            driver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), options);
+
 
             WebElement accesWE = driver.findElement(new AppiumBy.ByAccessibilityId("Views"));
 
@@ -119,28 +113,34 @@ public class ph {
                     .perform();
 
 
-
             File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(screenshot, new File("D:\\EclipsProject\\PH_test\\src\\main\\resources\\screenshot.png"));
+
+            WebElement succesMessage = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().resourceId(\"io.appium.android.apis:id/drag_result_text\")"));
+            String confirmationMessage = succesMessage.getText();
+
+            if (confirmationMessage.equalsIgnoreCase("dropped!")) {
+                Assert.assertTrue("Automation Success", true);
+                System.out.println("Automation Success");
+            } else {
+                Assert.fail("Automation Failed");
+                System.out.println("Failed");
+            }
 
 
             Assert.assertTrue("Automation Success", true);
             System.out.println("Automation Success");
-
-
-
-
-
-        } catch (NoSuchElementException | InterruptedException e) {
-            Assert.fail("One or multiple element not found");
-        } catch (IOException e) {
+        } catch (NoSuchElementException | IOException e) {
+            Assert.fail(e.toString());
             throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            driver.quit();
         }
-    }
 
-    @AfterTest
-    public void finishTest() {
-        driver.quit();
+
+
     }
 
 
