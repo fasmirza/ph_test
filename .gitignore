@@ -1,0 +1,77 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.iws
+out/
+.idea_modules/
+*.ipr
+
+# Maven target directory
+target/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Reports
+reports/
+test-output/
+
+# Selenium-specific files
+*.class
+*.jar
+test-output/
+
+# Selenium Screenshots
+screenshots/
+
+# Java build files
+*.class
+
+# Configuration files (if any sensitive files)
+*.env
+*.properties
+
+# Optional: Exclude build-related files
+/build/
+.gradle/
+.mvn/
+!mvnw
+!mvnw.cmd
+
+# Logs and OS files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
